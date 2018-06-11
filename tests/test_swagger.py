@@ -712,7 +712,6 @@ class TestNesting:
         assert spec_fixture.swagger.field2property(category_8) == {
             'items': {'$ref': ref_path + 'Category'}, 'readOnly': True, 'type': 'array'}
 
-@pytest.mark.nodetest
 def test_swagger_tools_validate_v2():
     ma_plugin = MarshmallowPlugin()
     spec = APISpec(
@@ -766,11 +765,10 @@ def test_swagger_tools_validate_v2():
         },
     )
     try:
-        utils.validate_swagger(spec)
+        utils.validate_spec(spec)
     except exceptions.SwaggerError as error:
         pytest.fail(str(error))
 
-@pytest.mark.nodetest
 def test_swagger_tools_validate_v3():
     ma_plugin = MarshmallowPlugin()
     spec = APISpec(
@@ -841,7 +839,7 @@ def test_swagger_tools_validate_v3():
         },
     )
     try:
-        utils.validate_swagger(spec)
+        utils.validate_spec(spec)
     except exceptions.SwaggerError as error:
         pytest.fail(str(error))
 
